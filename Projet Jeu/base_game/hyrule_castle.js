@@ -9,7 +9,7 @@ var content_enemies = fs.readFileSync('./json/enemies.json', 'utf-8');
 var Enemies_json = JSON.parse(content_enemies);
 var content_players = fs.readFileSync('./json/players.json', 'utf-8');
 var Players_json = JSON.parse(content_players);
-var readline = require('readline-sync');
+var readline = require('readline-sync'); 
 // Créons maintenant la fonction GetRandomenemy qui va prendre un ennemi au hasard
 //function GetRandomEnemy() {
 //  let enemy_already_choose: string[] = [];
