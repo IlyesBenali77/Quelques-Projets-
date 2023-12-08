@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "fluent-ffmpeg": "^2.1.2",
+    "play-sound": "^1.1.6",
+    "readline-sync": "^1.4.10",
+    "typescript": "^5.2.2",
+    "ytdl-core": "^4.11.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20.7.1"
+  }
+}
