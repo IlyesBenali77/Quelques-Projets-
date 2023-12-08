@@ -1,0 +1,89 @@
+ENDPOINTS 1 :
+Endpoint d'Ajout d'Utilisateurs à un Département (POST):
+
+Description : Cet endpoint permet d'ajouter des utilisateurs à un département spécifique. Il nécessite un jeton d'accès JWT avec le rôle d'administrateur pour accéder à l'opération. Les utilisateurs sont ajoutés au département s'ils ne sont pas déjà présents dans celui-ci.
+
+URL : /departement/{id_departement}/users/add
+
+Méthode HTTP : POST
+
+Paramètres :
+
+id_departement (Path parameter) : L'ID du département auquel les utilisateurs seront ajoutés.
+request (Request body) : Un objet JSON contenant un tableau d'IDs d'utilisateurs à ajouter au département.
+
+Autorisation : Requiert un jeton d'accès JWT avec le rôle d'administrateur.
+
+Réponse : Renvoie un tableau d'utilisateurs ajoutés au département.
+
+Pour tester cet endpoint, j'utilise : curl -X 'POST' \
+  'http://localhost:4242/departement/0/users/add' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "user_ids": [
+    1
+  ]
+}'
+
+ENDPOINTS 2 :
+
+Endpoint de Suppression d'Utilisateurs d'un Département (POST):
+
+Description : Cet endpoint permet de supprimer des utilisateurs d'un département spécifique. Il nécessite un jeton d'accès JWT avec le rôle d'administrateur pour accéder à l'opération. Les utilisateurs sont retirés du département s'ils sont présents dans celui-ci.
+
+URL : /departements/{id_departement}/users/remove
+
+Méthode HTTP : POST
+
+Paramètres :
+id_departement (Path parameter) : L'ID du département duquel les utilisateurs seront supprimés.
+request (Request body) : Un objet JSON contenant un tableau d'IDs d'utilisateurs à supprimer du département.
+
+Autorisation : Requiert un jeton d'accès JWT avec le rôle d'administrateur.
+
+Réponse : Renvoie un tableau d'utilisateurs retirés du département.
+Pour tester cet endpoint, j'utilise : curl -X 'POST' \
+  'http://localhost:4242/departements/0/users/remove' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "user_ids": [
+    1
+  ]
+}'
+
+
+ENDPOINTS 3 :
+
+Endpoint de Récupération des Utilisateurs d'un Département (GET):
+
+Description : Cet endpoint permet de récupérer la liste des utilisateurs appartenant à un département spécifique. Il prend en charge les rôles d'administrateur et d'utilisateur. Les utilisateurs sont filtrés en fonction du département auquel ils appartiennent.
+
+URL : /departements/{id_departement}/users
+
+Méthode HTTP : GET
+
+Paramètres :
+id_departement (Path parameter) : L'ID du département dont les utilisateurs seront récupérés.
+
+Autorisation : Requiert un jeton d'accès JWT valide.
+
+Réponse : Renvoie une liste d'objets représentant les utilisateurs du département spécifié. Les objets peuvent être soit de type AdminResponse (si le rôle de l'utilisateur est "admin"), soit de type UserResponse (si le rôle de l'utilisateur est "user"). Chaque objet contient les informations suivantes :
+id : L'ID de l'utilisateur.
+mail : L'adresse email de l'utilisateur.
+firstname : Le prénom de l'utilisateur.
+lastname : Le nom de famille de l'utilisateur.
+birthday_date : La date de naissance de l'utilisateur.
+address : L'adresse de l'utilisateur.
+postal_code : Le code postal de l'utilisateur.
+age : L'âge de l'utilisateur.
+meta : Les métadonnées de l'utilisateur.
+registration_date : La date d'inscription de l'utilisateur.
+token : Le jeton d'accès JWT de l'utilisateur.
+role : Le rôle de l'utilisateur ("admin" ou "user").
+departement : La liste des départements auxquels l'utilisateur appartient (dans ce cas, uniquement le département spécifié dans l'URL).
+
+Pour tester cet endpoint, j'utilise : curl -X 'GET' \
+  'http://localhost:4242/departements/0/users' \
+  -H 'accept: application/json'
