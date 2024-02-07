@@ -4,7 +4,7 @@ export interface Players {
     hp: number;
     mp: number;
     str: number;
-    int: number;
+    int: number; 
     def: number;
     res: number;
     spd: number;
