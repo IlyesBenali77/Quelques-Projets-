@@ -7,7 +7,7 @@ def build_huffman_tree(data):
     heapq.heapify(heap)
     
     while len(heap) > 1:
-        lo = heapq.heappop(heap)
+        lo = heapq.heappop(heap) 
         hi = heapq.heappop(heap)
         for pair in lo[1:]:
             pair[1] = '0' + pair[1]
